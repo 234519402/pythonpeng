@@ -2,11 +2,10 @@
 
 班级： 21计科1
 
-学号： 202302200000
+学号： B20210302106
 
-姓名： 张三
-
-Github地址：<https://github.com/yourusername/python_course>
+姓名： 彭浩
+Github地址：<https://github.com/234519402/pythonpeng>
 
 ---
 
@@ -105,32 +104,244 @@ git push origin main
 
 ## 实验过程与结果
 
-请将实验过程中编写的代码和运行结果放在这里，注意代码需要使用markdown的代码块格式化，例如Git命令行语句应该使用下面的格式：
-
-![Git命令](/Experiments/img/2023-07-26-22-48.png)
-
-显示效果如下：
-
 ```bash
-git init
-git add .
-git status
-git commit -m "first commit"
+Git基础的学习
+D.1配置Git
+ming2@rang MINGW64 ~/Desktop/GIT基础
+$ git config --global user.name “itcast”
+
+ming2@rang MINGW64 ~/Desktop/GIT基础
+$ git config --global user.email “usename@example.com”
+
+ming2@rang MINGW64 ~/Desktop/GIT基础
+$ git config --global user.name
+“itcast”
+
+ming2@rang MINGW64 ~/Desktop/GIT基础
+$ git config --global user.email
+“usename@example.com”
+
+D.4初始化仓库
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice
+$ git init
+Initialized empty Git repository in C:/Users/ming2/Desktop/GIT基础/git_practice/.git/
+
+D.5检查状态
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+        hello_git.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+D.6将文件加入仓库
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git add .
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   .gitignore
+        new file:   hello_git.py
+
+D.7执行提交
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git commit -m "Started project."
+[main (root-commit) 5e5ecc6] Started project.
+ 2 files changed, 2 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 hello_git.py
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+D.8查看提交历史
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git log
+commit 5e5ecc6f3efd3a678fe422a265af6ccae6423ace (HEAD -> main)
+Author: “itcast” <“usename@example.com”>
+Date:   Fri Oct 6 20:11:58 2023 +0800
+
+    Started project.
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git log --pretty=oneline
+5e5ecc6f3efd3a678fe422a265af6ccae6423ace (HEAD -> main) Started project.
+
+D.9第二次提交
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   hello_git.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git commit -am "Extended greeting."
+[main d03ceb3] Extended greeting.
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git log --pretty=oneline
+d03ceb3f179f8634c74db1555f49eef006953ce0 (HEAD -> main) Extended greeting.
+5e5ecc6f3efd3a678fe422a265af6ccae6423ace Started project.
+
+D.10放弃修改
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   hello_git.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git restore .
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+D.11检出以前的提交
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git log --pretty=oneline
+d03ceb3f179f8634c74db1555f49eef006953ce0 (HEAD -> main) Extended greeting.
+5e5ecc6f3efd3a678fe422a265af6ccae6423ace Started project.
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git checkout 5e5ecc
+Note: switching to '5e5ecc'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 5e5ecc6 Started project.
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice ((5e5ecc6...))
+$ git switch -
+Previous HEAD position was 5e5ecc6 Started project.
+Switched to branch 'main'
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git log --pretty=oneline
+d03ceb3f179f8634c74db1555f49eef006953ce0 (HEAD -> main) Extended greeting.
+5e5ecc6f3efd3a678fe422a265af6ccae6423ace Started project.
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git reset --hard 5e5ecc
+HEAD is now at 5e5ecc6 Started project.
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git log --pretty=oneline
+5e5ecc6f3efd3a678fe422a265af6ccae6423ace (HEAD -> main) Started project.
+
+D.12删除仓库
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+nothing to commit, working tree clean
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ rm -rf .git/
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice
+$ git status
+fatal: not a git repository (or any of the parent directories): .git
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice
+$ git init
+Initialized empty Git repository in C:/Users/ming2/Desktop/GIT基础/git_practice/.git/
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+        hello_git.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git add .
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git commit -m "Starting over."
+[main (root-commit) c41f20b] Starting over.
+ 2 files changed, 2 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 hello_git.py
+
+ming2@rang MINGW64 ~/Desktop/GIT基础/git_practice (main)
+$ git status
+On branch main
+nothing to commit, working tree clean
 ```
-
-如果是Python代码，应该使用下面代码块格式，例如：
-
-![Python代码](/Experiments/img/2023-07-26-22-52-20.png)
-
-显示效果如下：
 
 ```python
-def add_binary(a,b):
-    return bin(a+b)[2:]
+print("hello git world!")
 ```
 
-代码运行结果的文本可以直接粘贴在这里。
-
+```
+新建分支的git命令语法为，git branch <name>，<name>为新建分支的名字。
+切换分支的命令语法为，git checkout <name>。<name>为切换进的分支名。
+新建并切换分支的命令语法为，git checkout -b <name>。即，在切换分支的命令基础上加上-b参数。
+合并分支的语法为，git merge <name>。将名为<name> 的分支合如当前所在的分支。
+删除分支的语法形式有两种：
+git branch -d <name> git branch -D <name>
+其中 -d 和 -D都代表delete，不同之处在于-d参数用来删除已经合入到本分支的分支。既然已经合入进本分支，那就代表本分支拥有要删除分支的所有提交记录，所以删除分支毫无压力。
+而-D参数表示强制删除，可以删除没有合入进本分支的分支。
+查看分支git branch 不加任何参数就能展示当前所有分支的清单。
+```
 **注意：不要使用截图，Markdown文档转换为Pdf格式后，截图可能会无法显示。**
 
 ## 实验考查
@@ -138,12 +349,33 @@ def add_binary(a,b):
 请使用自己的语言回答下面的问题，这些问题将在实验检查时用于提问和答辩，并要求进行实际的操作。
 
 1. 什么是版本控制？使用Git作为版本控制软件有什么优点？
+版本控制是一种管理文件和代码变化的系统，它跟踪文件的修改历史，允许多人协作，回滚到先前的版本，以及解决冲突。它有助于团队更好地管理项目，确保代码的稳定性和可维护性。
+使用Git作为版本控制软件有以下优点：1. 分布式版本控制2. 强大的分支管理3. 快速和高效4.社区支持和广泛采用
 2. 如何使用Git撤销还没有Commit的修改？如何使用Git检出（Checkout）已经以前的Commit？（实际操作）
-3. Git中的HEAD是什么？如何让HEAD处于detached HEAD状态？（实际操作）
-4. 什么是分支（Branch）？如何创建分支？如何切换分支？（实际操作）
-5. 如何合并分支？git merge和git rebase的区别在哪里？（实际操作）
-6. 如何在Markdown格式的文本中使用标题、数字列表、无序列表和超链接？（实际操作）
-
+撤销修改:git checkout 检出已经以前的Commit:git log git checkout
+1. Git中的HEAD是什么？如何让HEAD处于detached HEAD状态？（实际操作）
+HEAD是一个特殊的指针，它指向当前所在的分支或Commit
+git branch git log git checkout
+2. 什么是分支（Branch）？如何创建分支？如何切换分支？（实际操作）
+Branch是一个独立的开发路径，它允许您在项目中并行进行工作，而不会影响主要的代码线。
+创建分支git branch 新分支名
+切换分支git checkout 新分支名
+1. 如何合并分支？git merge和git rebase的区别在哪里？（实际操作）
+使用git merge合并分支：git checkout 目标分支 git merge 要合并的分支
+git merge会创建一个新的合并提交，保留了分支的完整历史。这意味着您可以清晰地看到分支的历史和合并点。但它可能会导致分支历史变得复杂。
+git rebase将重新设置分支的提交，将它们应用到目标分支的顶部，使得历史线看起来更加线性。这可以保持分支历史的整洁，但会改写提交历史，因此在共享分支时要小心使用。
+2. 如何在Markdown格式的文本中使用标题、数字列表、无序列表和超链接？（实际操作）
+使用 # 符号来创建标题，# 的数量表示标题级别（从 1 到 6）
+要创建数字列表，只需在每个项目前加上数字和点号（.）
+要创建无序列表，可以使用 *、+ 或 - 符号
+要创建超链接，可以使用 [链接文本](链接URL) 的格式
 ## 实验总结
-
-总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+在完成Git基础学习、Markdown基础语法学习以及将Markdown文件转换为PDF格式的实验后，我获得了以下关键知识和技能：
+Git基础：
+了解Git是分布式版本控制系统，用于跟踪和管理项目的代码变化。
+掌握常用Git命令，如git init、git clone、git add、git commit、git branch、git merge等。
+理解Git的分支管理、版本历史记录、协作和远程仓库等功能。
+Markdown基础语法：
+了解Markdown是一种轻量级标记语言，用于创建格式化文档。
+学会使用基本Markdown语法，如#（标题）、*（无序列表）、1.（有序列表）、[链接文本](链接URL)（超链接）等。
+通过这些实验，我能够更好地管理项目、创建格式化文档，并将Markdown文档转换为可分享和打印的PDF文件。这些技能对于日常的软件开发、文档编写和协作非常有用，可以提高工作效率和产出质量。

@@ -2,13 +2,13 @@
 
 班级： 21计科1班
 
-学号： 202302200000
+学号： B20210302106
 
-姓名： 张三
+姓名： 彭浩
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/234519402/pythonpeng>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/234519402>
 
 ---
 
@@ -143,8 +143,50 @@ flowchart LR
 
 - [第二部分 Python变量、简单数据类型和列表简介](#第二部分)
 - [第三部分 Codewars Kata挑战](#第三部分)
-- [第四部分 使用Mermaid绘制程序流程图](#第四部分)
 
+第1题：求离整数n最近的平方数
+    def nearest_sq(n):
+    import math
+    m = round(math.sqrt(n))
+    return m * m
+
+第2题：弹跳的球
+def bouncing_ball(h, bounce, window):
+    if h <= 0 or bounce <= 0 or bounce >= 1 or window >= h:
+        return -1
+    
+    bounce_count = 1
+    current_height = h * bounce
+    
+    while current_height > window:
+        bounce_count += 2  
+        current_height *= bounce
+    
+    return bounce_count
+
+第3题： 元音统计
+def get_count(sentence):
+    yuanyin = "aeiou"
+    sentence = sentence.lower()
+    count = 0
+    for char in sentence:
+        if char in yuanyin:
+            count += 1
+    return count
+
+第4题：偶数或者奇数
+def even_or_odd(number):
+    if number % 2 == 0:
+        return "Even"
+    else:
+        return "Odd"
+- [第四部分 使用Mermaid绘制程序流程图](#第四部分)
+```mermaid
+flowchart LR
+    A[Start] --> B{ number % 2}
+    B -->|0| C[Even]
+    B -->|1| E[Odd]
+```
 注意代码需要使用markdown的代码块格式化，例如Git命令行语句应该使用下面的格式：
 
 ![Git命令](/Experiments/img/2023-07-26-22-48.png)
