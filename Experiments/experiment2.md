@@ -145,12 +145,17 @@ flowchart LR
 - [第三部分 Codewars Kata挑战](#第三部分)
 
 第1题：求离整数n最近的平方数
+
+```python
     def nearest_sq(n):
     import math
     m = round(math.sqrt(n))
     return m * m
+```
 
 第2题：弹跳的球
+
+```python
 def bouncing_ball(h, bounce, window):
     if h <= 0 or bounce <= 0 or bounce >= 1 or window >= h:
         return -1
@@ -163,8 +168,11 @@ def bouncing_ball(h, bounce, window):
         current_height *= bounce
     
     return bounce_count
+```
 
 第3题： 元音统计
+
+```python
 def get_count(sentence):
     yuanyin = "aeiou"
     sentence = sentence.lower()
@@ -173,14 +181,20 @@ def get_count(sentence):
         if char in yuanyin:
             count += 1
     return count
+```
 
 第4题：偶数或者奇数
+
+```python
 def even_or_odd(number):
     if number % 2 == 0:
         return "Even"
     else:
         return "Odd"
+```
+
 - [第四部分 使用Mermaid绘制程序流程图](#第四部分)
+
 ```mermaid
 flowchart LR
     A[Start] --> B{ number % 2}
@@ -220,9 +234,35 @@ def add_binary(a,b):
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. Python中的简单数据类型有那些？我们可以对这些数据类型做哪些操作？
+
+数据类型有：
+整数（int）,浮点数（float）,字符串（str）,列表（list）
+
+可以进行：
+算术操作,比较操作,位运算,逻辑操作,比较操作
+字符串连接,字符串复制,字符串长度,字符串索引和切片
+增删元素,访问元素,列表切片,列表合并
+
 2. 为什么说Python中的变量都是标签？
+
+在传统的编程语言中，变量通常被认为是存储数据值的容器，当将一个值分配给变量时，通常会在计算机的内存中为该值分配一块存储空间，然后将变量绑定到该存储空间。这意味着变量实际上是数据的存储位置。然而，在Python中，变量实际上是指向内存中对象的标签。当将一个值分配给变量时，Python不是在内存中创建一个新的存储空间来存储该值，而是创建一个对象，然后将变量绑定到该对象。如果创建另一个变量并将其设置为与第一个变量相等，那么这两个变量将引用相同的对象，而不是复制对象。
+
 3. 有哪些方法可以提高Python代码的可读性？
+
+有意义的变量名：为变量、函数、类等使用描述性的名称，使其易于理解。避免使用单个字符或不相关的名称。
+
+注释：为代码添加注释，解释代码的目的、功能和关键步骤。但不要过度注释，应注释那些真正需要解释的部分。
+
+适当的缩进：使用一致的缩进风格（通常是4个空格）来表示代码块。Python的缩进是强制的，所以确保它始终保持一致。
+
+代码布局：使用空行来分隔不同的代码块，使代码更具结构。例如，在函数之间、在类定义之间、在逻辑代码块之间使用空行。
+
+规范的命名约定：遵循Python的命名约定，如使用小写字母和下划线来命名变量和函数（snake_case），使用首字母大写的驼峰命名法来命名类（CamelCase）。
+
+代码审查：让同事或其他人审查您的代码，以获取反馈和建议，有助于发现潜在的改进点。
 
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+
+本次实验学习了Python中的数据类型，并了解了如何对这些数据类型进行操作，进行了简单的python入门学习，且学习了使用Mermaid绘制程序流程图。
