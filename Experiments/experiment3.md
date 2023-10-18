@@ -54,7 +54,8 @@ Python列表操作
 
 **提示：首先使用列表解析得到一个列表，元素全部是3或者5的倍数。
 使用sum函数可以获取这个列表所有元素的和.**
-
+range
+if% ==0
 代码提交地址：
 <https://www.codewars.com/kata/514b92a657cdc65150000006>
 
@@ -210,7 +211,101 @@ flowchart LR
 
 - [第一部分 Python列表操作和if语句](#第一部分)
 - [第二部分 Codewars Kata挑战](#第二部分)
+
+第一题：3和5的倍数
+
+```python
+def solution(number):
+    return sum(i for i in range(number)
+        if i%3 == 0 or i%5 == 0)
+```
+
+第二题： 重复字符的编码器
+
+```python
+def duplicate_encode(word):
+    word = word.lower()
+    result_string = ""
+    for char in word:
+        if word.count(char) > 1:
+            result_string += ")"
+        else:
+            result_string += "("
+    return result_string
+```
+
+第三题：括号匹配
+
+```python
+def valid_braces(string):
+    stack = []
+    opening_brackets = "({["
+    closing_brackets = ")}]"
+    for char in string:
+        if char in opening_brackets:
+            stack.append(char)
+        elif char in closing_brackets:
+            if not stack:
+                return False
+            top = stack.pop()
+            if opening_brackets.index(top) != closing_brackets.index(char):
+                return False
+    return len(stack) == 0
+```
+
+第四题： 从随机三元组中恢复秘密字符串
+
+```python
+def recoverSecret(triplets):
+    relations = {}
+    for triplet in triplets:
+        for char in triplet:
+            if char not in relations:
+                relations[char] = set()
+    
+    for triplet in triplets:
+        relations[triplet[0]].add(triplet[1])
+        relations[triplet[1]].add(triplet[2])
+    
+    def topological_sort(node, visited, result):
+        visited[node] = True
+        for neighbor in relations[node]:
+            if not visited[neighbor]:
+                topological_sort(neighbor, visited, result)
+        result.insert(0, node)
+    
+    result = []
+    visited = {char: False for char in relations.keys()}
+    
+    for char in relations:
+        if not visited[char]:
+            topological_sort(char, visited, result)
+    
+    return ''.join(result)
+```
+
+第五题： 去掉喷子的元音
+
+```python
+def disemvowel(string_):
+    vowels = "AEIOUaeiou"
+    string_ = ''.join(char for char in string_ if char not in vowels)
+    return string_
+```
+
 - [第三部分 使用Mermaid绘制程序流程图](#第三部分)
+
+第一题：3和5的倍数
+
+```mermaid
+flowchart LR
+    A[Start遍历i从0到n-1] --> B{是否被3或5整除}
+    B -->|Yes| C[i加到sum]
+    C --> D[Rethink]
+    D --> B
+    B ---->|No| D
+    B ---->|遍历完成| 返回sum
+```
 
 注意代码需要使用markdown的代码块格式化，例如Git命令行语句应该使用下面的格式：
 
@@ -245,11 +340,34 @@ def add_binary(a,b):
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. Python中的列表可以进行哪些操作？
+
+创建列表,添加元素,插入元素,删除元素,索引访问,修改元素,列表合并,列表复制,列表长度,列表排序,反转列表,列表查找,计数元素,查找元素索引
+
 2. 哪两种方法可以用来对Python的列表排序？这两种方法有和区别？
+
+list.sort() 是一个方法，它会直接修改原始列表，无需创建新的列表，因此在处理大型列表时，它更节省内存和更快速。但要注意，这种排序方法是原地的，不会创建新列表。
+
+sorted() 函数是一个内置函数，它创建一个新的已排序列表，而不会修改原始列表。这意味着原始列表保持不变，因此在需要保留原始数据的情况下很有用。然而，它会占用额外的内存，因为它需要为新列表分配内存。
+
 3. 如何将Python列表逆序打印？
+
+使用reversed()函数或使用切片操作
+
 4. Python中的列表执行哪些操作时效率比较高？哪些操作效率比较差？是否有类似的数据结构可以用来替代列表？
+
+高效操作：索引访问，切片操作，检查元素是否在列表中
+
+低效操作：插入或删除元素，排序
+
+如果需要更高效的插入和删除操作，可以考虑使用双向链表的数据结构，如果需要按值进行高效查找和删除操作，可以考虑使用集合
+
 5. 阅读《Fluent Python》Chapter 2. An Array of Sequence - Tuples Are Not Just Immutable Lists小节（p30-p35）。总结该小节的主要内容。
+
+这一小节深入探讨了元组的特性和用途，以及它们与列表的区别。元组的不可变性、元组解包、命名元组等特性都使它们成为Python中重要的数据结构，适用于多种情境，包括作为字典键、多返回值的函数返回等。
+
 
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+
+字符串操作，包括字符的遍历和处理。使用栈来处理和验证嵌套结构。使用拓扑排序来恢复原始字符串。字符串操作，包括遍历和字符删除。正则表达式的基础知识。
