@@ -2,13 +2,13 @@
 
 班级： 21计科1
 
-学号： 202302200000
+学号： B20210302106
 
-姓名： 张三
+姓名： 彭浩
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/234519402/pythonpeng>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/234519402>
 
 ---
 
@@ -363,7 +363,7 @@ sorted() 函数是一个内置函数，它创建一个新的已排序列表，�
 
 5. 阅读《Fluent Python》Chapter 2. An Array of Sequence - Tuples Are Not Just Immutable Lists小节（p30-p35）。总结该小节的主要内容。
 
-这一小节深入探讨了元组的特性和用途，以及它们与列表的区别。元组的不可变性、元组解包、命名元组等特性都使它们成为Python中重要的数据结构，适用于多种情境，包括作为字典键、多返回值的函数返回等。
+对列表的各种操作包括增删改
 
 
 ## 实验总结

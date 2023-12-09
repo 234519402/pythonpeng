@@ -2,13 +2,13 @@
 
 班级： 21计科1
 
-学号： 202302200000
+学号： B20210302106
 
-姓名： 张三
+姓名： 彭浩
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/234519402/pythonpeng>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/234519402>
 
 ---
 
@@ -332,7 +332,79 @@ flowchart LR
 
 - [第一部分 Python列表操作和if语句](#第一部分)
 - [第二部分 Codewars Kata挑战](#第二部分)
+
+第一题：淘气还是乖孩子
+
+```python
+def naughty_or_nice(data):
+    naughty_count = 0
+    nice_count = 0
+
+    for month in data:
+        for day in data[month]:
+            if data[month][day] == 'Naughty':
+                naughty_count += 1
+            elif data[month][day] == 'Nice':
+                nice_count += 1
+
+    if naughty_count > nice_count:
+        return "Naughty!"
+    elif naughty_count <= nice_count:
+        return "Nice!"
+
+```
+
+第三题： RNA到蛋白质序列的翻译
+
+```python
+def protein(rna):
+    r = ""
+    for i in range(0, len(rna), 3):
+        d = PROTEIN_DICT[rna[i : i + 3]]
+        if d == "Stop":
+            break
+        r += d
+    return r
+```
+
+第四题： 填写订单
+
+```python
+def fillable(stock, merch, n):
+    return merch in stock and stock.get(merch)>=n
+```
+
+```python
+num_of_people = int(input("请问有多少人用餐？ "))
+
+if num_of_people > 8:
+    print("很抱歉，没有空桌。")
+else:
+    print("有空桌可供用餐。")
+```
+
+```python
+num = int(input("请输入一个整数： "))
+
+if num % 10 == 0:
+    print(f"{num} 是10的整数倍。")
+else:
+    print(f"{num} 不是10的整数倍。")
+
+```
+
 - [第三部分 使用Mermaid绘制程序流程图](#第三部分)
+
+```mermaid
+flowchart LR
+    A[Start] --> B{遍历每月每天}
+    B -->|未完| C{naughty还是nice}
+    C -->|naughty| D[naughty_count++]
+    D --> B
+    C -->|nice| E[nice_count++]
+    E --> B
+    B ---->|完| F[End]
+```
 
 注意代码需要使用markdown的代码块格式化，例如Git命令行语句应该使用下面的格式：
 
@@ -367,10 +439,34 @@ def add_binary(a,b):
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. 字典的键和值有什么区别？
+
+键是字典中的标识符或索引，用于唯一地标识一个值。
+键通常是不可变的数据类型，如字符串、数字或元组，因为字典需要确保键的唯一性。
+字典中的键是唯一的，即不允许重复的键。
+
+值是与键关联的数据或信息。
+值可以是任何数据类型，包括字符串、数字、列表、字典等。
+字典中的值可以重复，不要求唯一性。
+
 2. 在读取和写入字典时，需要使用默认值可以使用什么方法？
+
+get(key, default)或setdefault(key, default)
+
 3. Python中的while循环和for循环有什么区别？
+
+while 循环用于在条件为真的情况下重复执行一段代码块。循环会一直执行，直到条件变为假或循环被显式中断。while 循环适用于不确定循环次数的情况，因为它的条件是动态判断的。
+
+for 循环用于遍历一个可迭代对象中的元素，并执行一段代码块。for 循环通常用于已知循环次数的情况，它会在每次迭代中自动获取下一个元素，直到可迭代对象中的所有元素都被遍历。
+
 4. 阅读[PEP 636 – Structural Pattern Matching: Tutorial](https://peps.python.org/pep-0636/), 总结Python 3.10中新出现的match语句的使用方法。
+
+match 是Python 3.10引入的新特性，用于进行模式匹配。它提供了一种更加直观和灵活的方式来处理不同模式的数据。
 
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+
+循环（for 循环），条件语句（if 和 elif）
+字典的获取（get()）、字典键的存在性检查
+字符串处理：字符串切片
+函数的定义和返回值

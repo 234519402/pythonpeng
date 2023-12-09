@@ -2,13 +2,13 @@
 
 班级： 21计科1
 
-学号： 202302200000
+学号： B20210302106
 
-姓名： 张三
+姓名： 彭浩
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/234519402/pythonpeng>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/234519402>
 
 ---
 
@@ -193,9 +193,88 @@ flowchart LR
 请将实验过程与结果放在这里，包括：
 
 - [第一部分 Codewars Kata挑战](#第一部分)
+
+第一题：停止逆转我的单词
+
+```python
+def spin_words(sentence):
+    output = []
+    for word in sentence.split(' '):
+        if len(word) > 4:
+            word = word[::-1]
+        output.append(word)
+    return ' '.join(output)
+```
+
+第二题： 发现离群的数
+
+```python
+def find_outlier(integers):
+    even_count = 0
+    odd_count = 0
+    last_even = None
+    last_odd = None
+    for num in integers:
+        if num % 2 == 0:
+            even_count += 1
+            last_even = num
+        else:
+            odd_count += 1
+            last_odd = num
+        if odd_count == 1 and even_count > 1:
+            return last_odd
+        if even_count == 1 and odd_count > 1:
+            return last_even
+```
+
+第三题： 检测Pangram
+
+```python
+def is_pangram(s):
+    s = ''.join(filter(str.isalpha, s)).lower()
+    return len(set(s)) == 26
+```
+
+第四题： 数独解决方案验证
+
+```python
+def validate_sudoku(board):
+    def is_valid(nums):
+        return sum(nums) == 45 and len(set(nums)) == 9
+
+    for i in range(9):
+        if not (is_valid(board[i]) and is_valid([board[j][i] for j in range(9)])):
+            return False
+
+    for i in range(0, 9, 3):
+        for j in range(0, 9, 3):
+            if not is_valid([board[x][y] for x in range(i, i + 3) for y in range(j, j + 3)]):
+                return False
+
+    return True
+```
+
 - [第二部分 使用Mermaid绘制程序流程图](#第二部分)
 
-注意代码需要使用markdown的代码块格式化，例如Git命令行语句应该使用下面的格式：
+第二题： 发现离群的数
+
+```mermaid
+flowchart LR
+    A[Start] --> B{% 2 == 0?}
+    B -->|Yes| C[even_count++]
+    C --> D{odd_count>1?}
+    D -->|Yes| E[返回even_count]
+    D -->|No|B
+    B -->|No| F[odd_count++]
+    F --> G{odd_count>1?}
+    G -->|Yes| H[返回even_count]
+    G -->|No|B
+```
+
+注意代码需要使用markdown的代码块格式化，例如Git命令行语句应该使用下面
+
+
+的格式：
 
 ![Git命令](/Experiments/img/2023-07-26-22-48.png)
 
@@ -228,10 +307,42 @@ def add_binary(a,b):
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. 集合（set）类型有什么特点？它和列表（list）类型有什么区别？
+集合元素的增、删以及判断元素是否在集合中存在，集合的运算操作
+
 2. 集合（set）类型主要有那些操作？
+集合具有以下特点：元素唯一性、无序性、可变性。列表中的元素可以重复，列表是有序的
+
 3. 使用`*`操作符作用到列表上会产生什么效果？为什么不能使用`*`操作符作用到嵌套的列表上？使用简单的代码示例说明。
-4. 总结列表,集合，字典的解析（comprehension）的使用方法。使用简单的代码示例说明。
+重复元素
+original_list = [1, 2, 3]
+repeated_list = original_list*3
+print(repeated_list)  
+扩展列表
+list1 = [1, 2]
+list2 = [3, 4]
+extended_list = list1 + list2
+print(extended_list)  
+嵌套列表
+nested_list = [[1, 2]]*3
+print(nested_list)
+修改嵌套列表的一个元素
+nested_list[0][0] = 100
+print(nested_list)
+1. 总结列表,集合，字典的解析（comprehension）的使用方法。使用简单的代码示例说明。
+列表解析
+original_list = [1, 2, 2, 3, 3, 4, 5, 5]
+squared_set = {x**2 for x in original_list}
+print(squared_set)
+集合解析
+original_list = [1, 2, 2, 3, 3, 4, 5, 5]
+squared_set = {x**2 for x in original_list}
+print(squared_set)
+字典解析
+original_list = [1, 2, 3, 4, 5]
+squared_dict = {x: x**2 for x in original_list}
+print(squared_dict)
 
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+这次实验中，我使用了以下知识和编程技巧：字符串操作、列表操作、条件语句、集合操作、嵌套循环。

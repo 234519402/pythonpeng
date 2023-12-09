@@ -2,13 +2,13 @@
 
 班级： 21计科1
 
-学号： 202302200000
+学号： B20210302106
 
-姓名： 张三
+姓名： 彭浩
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/234519402/pythonpeng>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/234519402>
 
 ---
 
@@ -320,7 +320,112 @@ flowchart LR
 请将实验过程与结果放在这里，包括：
 
 - [第一部分 Python函数](#第一部分)
+
+第一题：编码聚会1
+
+```python
+def count_developers(lst):
+    european_js_developers = [dev for dev in lst if dev['continent'] == 'Europe' and dev['language'] == 'JavaScript']
+    return len(european_js_developers)
+```
+
+第二题： 使用函数进行计算
+
+```python
+def zero(operation=None):
+    return 0 if operation is None else operation(0)
+
+def one(operation=None):
+    return 1 if operation is None else operation(1)
+
+def two(operation=None):
+    return 2 if operation is None else operation(2)
+
+def three(operation=None):
+    return 3 if operation is None else operation(3)
+
+def four(operation=None):
+    return 4 if operation is None else operation(4)
+
+def five(operation=None):
+    return 5 if operation is None else operation(5)
+
+def six(operation=None):
+    return 6 if operation is None else operation(6)
+
+def seven(operation=None):
+    return 7 if operation is None else operation(7)
+
+def eight(operation=None):
+    return 8 if operation is None else operation(8)
+
+def nine(operation=None):
+    return 9 if operation is None else operation(9)
+
+def plus(y):
+    return lambda x: x + y
+
+def minus(y):
+    return lambda x: x - y
+
+def times(y):
+    return lambda x: x * y
+
+def divided_by(y):
+    return lambda x: x // y
+```
+
+第三题： 缩短数值的过滤器
+
+```python
+def shorten_number(suffixes, base):
+    def func(n):
+        if isinstance(n, str):
+            try:
+                num = int(float(n))
+            except ValueError:
+                return str(n)
+            
+            i = 0
+            while num >= base and i < len(suffixes) - 1:
+                num //= base
+                i += 1
+            
+            return str(num) + suffixes[i]
+        else:
+            return str(n)
+
+    return func
+
+```
+
+第四题： 编码聚会7
+
+```python
+def find_senior(lst):
+    max_age = max(dev['age'] for dev in lst)
+    return [dev for dev in lst if dev['age'] == max_age]
+```
+
+```python
+
+```
+
 - [第二部分 Codewars Kata挑战](#第二部分)
+
+第四题： 编码聚会7
+
+```mermaid
+flowchart LR
+    A[Start] -->B[列表推导式找max_age]
+    B -->C[遍历lst]
+    C-->E{age == max_age?}
+    E -->|Yes| F[开发者存入lst]
+    F -->C
+    E -->|No|C
+    C -->|遍历完成| G[返回lst]
+```
+
 - [第三部分 使用Mermaid绘制程序流程图](#第三部分)
 
 注意代码需要使用markdown的代码块格式化，例如Git命令行语句应该使用下面的格式：
@@ -356,9 +461,28 @@ def add_binary(a,b):
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. 什么是函数式编程范式？
+   
+   函数式编程是一种编程范式，它将计算视为数学函数的求值，并避免使用可变状态和可变数据。函数式编程强调函数的纯粹性和不可变性
 2. 什么是lambda函数？请举例说明。
+   
+   Lambda函数是一种匿名函数，它可以用于创建简短的、临时的函数。使用lambda函数定义一个加法函数add = lambda x, y: x + y
 3. 什么是高阶函数？常用的高阶函数有哪些？这些高阶函数如何工作？使用简单的代码示例说明。
+   
+   高阶函数是一种函数，它可以接受其他函数作为参数，也可以返回一个函数作为其结果。在函数式编程中，高阶函数是一种强大的工具，因为它们允许我们以函数作为数据进行操作，从而更灵活地处理代码逻辑。
+
+   使用map函数将列表中的每个元素加倍
+numbers = [1, 2, 3, 4, 5]
+doubled_numbers = list(map(lambda x: x * 2, numbers))
+print(doubled_numbers)  # 输出 [2, 4, 6, 8, 10]
+
+   使用filter函数筛选出列表中的奇数
+numbers = [1, 2, 3, 4, 5]
+odd_numbers = list(filter(lambda x: x % 2 != 0, numbers))
+print(odd_numbers)  # 输出 [1, 3, 5]
+
+
 
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+这次实验中，我使用了以下知识和编程技巧：列表推导式、最大值查找和列表过滤、函数式编程思想、闭包、异常处理、高阶函数等。它们展示了不同层面上的编程技能和思维方式。

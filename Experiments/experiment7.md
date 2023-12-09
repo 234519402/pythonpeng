@@ -2,13 +2,13 @@
 
 班级： 21计科1
 
-学号： 202302200000
+学号： B20210302106
 
-姓名： 张三
+姓名： 彭浩
 
-Github地址：<https://github.com/yourusername/python_course>
+Github地址：<https://github.com/234519402/pythonpeng>
 
-CodeWars地址：<https://www.codewars.com/users/yourusername>
+CodeWars地址：<https://www.codewars.com/users/234519402>
 
 ---
 
@@ -283,7 +283,155 @@ classDiagram
 
 - [第一部分 Python面向对象编程](#第一部分)
 - [第二部分 Codewars Kata挑战](#第二部分)
+  
+第一题：面向对象的海盗
+
+```python
+class Ship:
+    def __init__(self, draft, crew):
+        self.draft = draft
+        self.crew = crew
+    def is_worth_it(self):
+        draft_without_crew = self.draft - (self.crew * 1.5)
+
+        return draft_without_crew > 20
+```
+
+第二题： 搭建积木
+
+```python
+class Block:
+    def __init__(self, dimensions):
+        self.width, self.length, self.height = dimensions
+
+    def get_width(self):
+        return self.width
+
+    def get_length(self):
+        return self.length
+
+    def get_height(self):
+        return self.height
+
+    def get_volume(self):
+        return self.width * self.length * self.height
+
+    def get_surface_area(self):
+        return 2 * (self.width * self.length + self.width * self.height + self.length * self.height)
+```  
+
+第三题： 分页助手
+
+```python
+class PaginationHelper:
+    def __init__(self, collection, items_per_page):
+        self.collection = collection
+        self.items_per_page = items_per_page
+
+    def item_count(self):
+        return len(self.collection)
+
+    def page_count(self):
+        return -(-self.item_count() // self.items_per_page) 
+
+    def page_item_count(self, page_index):
+        if page_index < 0 or page_index >= self.page_count():
+            return -1 
+        elif page_index == self.page_count() - 1:
+            return self.item_count() % self.items_per_page or self.items_per_page  
+        else:
+            return self.items_per_page
+
+    def page_index(self, item_index):
+        if 0 <= item_index < self.item_count():
+            return item_index // self.items_per_page
+        else:
+            return -1  
+
+```  
+
+第四题： 向量（Vector）类
+
+```python
+import math
+
+class Vector:
+    def __init__(self, components):
+        self.components = components
+
+    def __str__(self):
+        return '(' + ','.join(map(str, self.components)) + ')'
+
+    def equals(self, other):
+        return self.components == other.components
+
+    def add(self, other):
+        if len(self.components) != len(other.components):
+            raise ValueError("Vectors must have the same length for addition.")
+        return Vector([x + y for x, y in zip(self.components, other.components)])
+
+    def subtract(self, other):
+        if len(self.components) != len(other.components):
+            raise ValueError("Vectors must have the same length for subtraction.")
+        return Vector([x - y for x, y in zip(self.components, other.components)])
+
+    def dot(self, other):
+        if len(self.components) != len(other.components):
+            raise ValueError("Vectors must have the same length for dot product.")
+        return sum(x * y for x, y in zip(self.components, other.components))
+
+    def norm(self):
+        return math.sqrt(sum(x**2 for x in self.components))
+```  
+
+第五题： Codewars风格的等级系统
+
+```python
+class User:
+    RANKS = [-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]
+
+    def __init__(self):
+        self.rank = self.RANKS[0]
+        self.progress = 0
+
+    def inc_progress(self, activity_rank):
+        if activity_rank not in self.RANKS:
+            raise ValueError("Invalid activity rank")
+
+        rank_difference = self.RANKS.index(activity_rank) - self.RANKS.index(self.rank)
+
+        if rank_difference == 0:
+            self.progress += 3
+        elif rank_difference == -1:
+            self.progress += 1
+        elif rank_difference > 0:
+            self.progress += 10 * rank_difference**2
+
+        while self.progress >= 100:
+            self.progress -= 100
+            if self.rank == -1:
+                self.rank = self.RANKS[self.RANKS.index(self.rank) + 2]
+            elif self.rank < 8:
+                self.rank = self.RANKS[self.RANKS.index(self.rank) + 1]
+
+        if self.rank == 8:
+            self.progress = 0
+```  
+
 - [第三部分 使用Mermaid绘制程序流程图](#第三部分)
+
+```mermaid
+---
+title: Ship example
+---
+classDiagram
+    Ship<|-- no
+    Ship : +float draft
+    Ship : +int crew
+    Ship: +__init__() 
+    Ship: +is_worth_it()
+
+```
 
 注意代码需要使用markdown的代码块格式化，例如Git命令行语句应该使用下面的格式：
 
@@ -318,9 +466,51 @@ def add_binary(a,b):
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
 1. Python的类中__init__方法起什么作用？
+   它在创建类的实例（对象）时被调用，用于对实例进行初始化。具体而言，该方法允许你为类的实例设置初始属性或执行其他必要的初始化操作。
 2. Python语言中如何继承父类和改写（override）父类的方法。
+   继承父类并改写父类的方法是通过创建子类来实现的。子类继承了父类的属性和方法，并且可以选择性地覆盖或扩展父类的方法。
 3. Python类有那些特殊的方法？它们的作用是什么？请举三个例子并编写简单的代码说明。
+    __init__(self, ...): 构造方法，用于在创建类的实例时进行初始化。在创建对象时自动调用。
+
+```python
+class MyClass:
+    def __init__(self, x):
+        self.x = x
+```
+
+    __str__(self): 返回对象的字符串表示形式，通常用于通过 print 函数打印对象时调用。
+
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __str__(self):
+        return f"Point({self.x}, {self.y})"
+```
+
+    __add__(self, other): 定义对象的加法操作，使得对象可以使用 + 运算符进行相加。
+
+```python
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+
+v1 = Vector(1, 2)
+v2 = Vector(3, 4)
+result = v1 + v2
+print(result.x, result.y)  
+```
 
 ## 实验总结
 
 总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+
+类和对象： 代码中包含了多个类，如Ship、Block、PaginationHelper、Vector和User。这些类用于建模不同的概念，如船只、立方体块、分页助手、向量和用户。
+
+类的初始化方法： 在每个类中，都有__init__方法，用于初始化对象的属性。这是类的构造函数，负责初始化对象的状态。
